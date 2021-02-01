@@ -19,6 +19,11 @@ include("header.php");
               <input type="text" name="cel" placeholder="Celular" >
               <input type="password" name="pwd" autocomplete="new-password" placeholder="Contraseña">
               <input type="password" name="pwd-repeat" placeholder="Repita Contraseña">
+              <p>¿Va hacer usuario tipo administrador (gerente)?</p>
+              <input type="radio" name="admi" value="Si">
+              <label for="Si">Si&nbsp;</label>
+              <input type="radio" name="admi" value="No" checked>
+              <label for="No">No</label><br>
               <button type="submit"  class="btn btn-primary" style="margin: .8rem" name="signup-submit">Registrate</button>
       </form>
   

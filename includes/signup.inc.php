@@ -62,8 +62,26 @@ else{
 
                 mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $celular, $hashedPwd);
                 mysqli_stmt_execute($stmt);
-                header("Location: ../../BHermanosM-main/empleados/empleados.php?success=RegistroCompletado");
-                exit();
+
+                $typeUser= $_POST['admi'];
+                if($typeUser == 'Si'){
+                    require ("../../BHermanosM-main/conexion.php");
+                    $conn = new mysqli($servidor, $usuario, $pwd, $bd);
+
+                    $sql = "INSERT INTO administradores (correo) VALUES ('$email')";
+
+                    mysqli_query($conn,$sql);
+                    $conn->close();
+                    header("Location: ../../BHermanosM-main/empleados/empleados.php?success=Noadmi");
+                    exit();
+                } else{
+                    header("Location: ../../BHermanosM-main/empleados/empleados.php?success=RegistroCompletado");
+                    exit();
+                }
+
+
+                /*header("Location: ../../BHermanosM-main/empleados/empleados.php?success=RegistroCompletado");
+                exit();*/
             }
         }
     }

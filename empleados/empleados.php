@@ -68,6 +68,7 @@ if(isset($_SESSION['user'])):*/?>
 			<th>Nombre del Empleado</th>
 			<th>Celular</th>
 			<th>Correo Electronico</th>
+			<th>Administrador</th>
 		</tr>
 		<?php
 			require ("../../BHermanosM-main/conexion.php");
@@ -83,6 +84,7 @@ if(isset($_SESSION['user'])):*/?>
 			//Obtener los registros  de la base de datos
 			$sql = "SELECT * from usuarios";
 			$result = $conn->query($sql);
+
 			
 			if($result->num_rows > 0){
 				while($row = $result->fetch_object()){
@@ -93,6 +95,14 @@ if(isset($_SESSION['user'])):*/?>
 						echo "<td>" . $row->nombre . "</td>";
 						echo "<td>" . $row->celular . "</td>";
 						echo "<td>" . $row->correo . "</td>";
+							$sql = "SELECT correo from administradores WHERE correo = '$row->correo'";
+							$admi = $conn->query($sql);
+							if($admi->num_rows > 0){
+								echo "<td>"."Si"."</td>";
+							} else {
+								echo "<td>"."No"."</td>";
+							} 
+
 					echo "</tr>";
 				}
 				$result->free();
